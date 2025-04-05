@@ -1,0 +1,58 @@
+Acknowledgement
+
+
+
+
+
+I would like to express my sincere gratitude to my supervisors, Prof. Dr. Jan Seedorf and Dr. Darshana Rawal, for their invaluable guidance, support, and constructive feedback throughout the course of this research. Their insights and expertise have been instrumental in shaping this work.
+
+
+This work is an outcome of the project "Datasecurity4ICity", a subproject of "ICity: Intelligent City" (https://www.hft-stuttgart.com/research/projects/i-city). We extend our gratitude for the funding received through the FHImpuls program under the number 13FH9E04IA by the German Federal Ministry of Education and Research (BMBF).
+
+
+I would also like to extend my appreciation to my colleagues, friends, and family for their constant encouragement and support during this journey. Their motivation has played a crucial role in completing this thesis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Brinda Appasandra Narayanappa
+M. Sc. Software Technology
+
+
+
+3
