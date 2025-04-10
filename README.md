@@ -58,7 +58,7 @@ Follow these steps to download the project code and install the necessary depend
         ```bash
         pip install -r requirements.txt
         ```
-    *   * Install `liboqs-python` specifically by using below commands):*
+    *   *Install `liboqs-python` specifically by using below commands):*
         ```bash
         cd liboqs-python
         pip install .
