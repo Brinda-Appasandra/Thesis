@@ -38,15 +38,21 @@ def read_all_times(filepath):
 def calculate_standard_deviation(data):
     return {data_size: np.std(times) for data_size, times in data.items()}
 
-# Save all standard deviations to a single CSV
-def save_all_stddevs(filepath, all_stddevs):
+# Calculate mean for each data size in a metric
+def calculate_mean(data):
+    return {data_size: np.mean(times) for data_size, times in data.items()}
+
+# Save all standard deviations and means to a single CSV
+def save_all_stats(filepath, all_stddevs, all_means):
     try:
         with open(filepath, 'w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(['Metric', 'Data Size', 'Standard Deviation'])
-            for metric, stddevs in all_stddevs.items():
-                for data_size, std in stddevs.items():
-                    writer.writerow([metric, data_size, std])
+            writer.writerow(['Metric', 'Data Size', 'Standard Deviation', 'Mean'])
+            for metric in all_stddevs.keys():
+                stddevs = all_stddevs[metric]
+                means = all_means[metric]
+                for data_size in stddevs.keys():
+                    writer.writerow([metric, data_size, stddevs[data_size], means[data_size]])
     except IOError as e:
         print(f"Error writing to file: {e}")
 
@@ -64,7 +70,6 @@ def plot_stddev(metric_name, std_devs):
     plt.xlim(0, max(data_sizes) + 5000)
     plt.xticks(np.arange(0, max(data_sizes) + 5000, step=5000))
 
-
     filename = f'{metric_name}_stddev_plot.png'
     plt.savefig(filename)
     print(f"Plot saved as {filename}")
@@ -73,15 +78,18 @@ def plot_stddev(metric_name, std_devs):
 # Main driver
 if __name__ == "__main__":
     input_filepath = 'computation_times.csv'
-    output_filepath = 'all_standard_deviations.csv'
+    output_filepath = 'all_statistics.csv'
 
     metrics_data = read_all_times(input_filepath)
     all_stddevs = {}
+    all_means = {}
 
     for metric_name, metric_data in metrics_data.items():
         std_devs = calculate_standard_deviation(metric_data)
+        means = calculate_mean(metric_data)
         all_stddevs[metric_name] = std_devs
+        all_means[metric_name] = means
         plot_stddev(metric_name, std_devs)
 
-    save_all_stddevs(output_filepath, all_stddevs)
-    print(f"All standard deviations saved to {output_filepath}")
+    save_all_stats(output_filepath, all_stddevs, all_means)
+    print(f"All statistics (standard deviations and means) saved to {output_filepath}")
